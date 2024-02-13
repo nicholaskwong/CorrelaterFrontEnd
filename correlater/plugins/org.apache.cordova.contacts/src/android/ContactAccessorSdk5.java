@@ -468,7 +468,7 @@ public class ContactAccessorSdk5 extends ContactAccessor {
 
         // If the user is searching for every contact then short circuit the method
         // and return a shorter where clause to be searched.
-        if (searchTerm.equals("%")) {
+        if ("%".equals(searchTerm)) {
             options.setWhere("(" + ContactsContract.Data.CONTACT_ID + " LIKE ? )");
             options.setWhereArgs(new String[] { searchTerm });
             return options;
@@ -616,7 +616,7 @@ public class ContactAccessorSdk5 extends ContactAccessor {
             for (int i = 0; i < fields.length(); i++) {
                 key = fields.getString(i);
 
-                if (key.equals("id")) {
+                if ("id".equals(key)) {
                     where.add("(" + dbMap.get(key) + " = ? )");
                     whereArgs.add(searchTerm.substring(1, searchTerm.length() - 1));
                 }

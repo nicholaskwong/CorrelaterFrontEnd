@@ -27,9 +27,9 @@ public class SplashScreen extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
-        if (action.equals("hide")) {
+        if ("hide".equals(action)) {
             this.webView.postMessage("splashscreen", "hide");
-        } else if (action.equals("show")){
+        } else if ("show".equals(action)){
             this.webView.postMessage("splashscreen", "show");
         }
         else {

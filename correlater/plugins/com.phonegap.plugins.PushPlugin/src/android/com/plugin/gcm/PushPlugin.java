@@ -167,22 +167,22 @@ public class PushPlugin extends CordovaPlugin {
 				Object value = extras.get(key);
 
 				// System data from Android
-				if (key.equals("from") || key.equals("collapse_key"))
+				if ("from".equals(key) || "collapse_key".equals(key))
 				{
 					json.put(key, value);
 				}
-				else if (key.equals("foreground"))
+				else if ("foreground".equals(key))
 				{
 					json.put(key, extras.getBoolean("foreground"));
 				}
-				else if (key.equals("coldstart"))
+				else if ("coldstart".equals(key))
 				{
 					json.put(key, extras.getBoolean("coldstart"));
 				}
 				else
 				{
 					// Maintain backwards compatibility
-					if (key.equals("message") || key.equals("msgcnt") || key.equals("soundname"))
+					if ("message".equals(key) || "msgcnt".equals(key) || "soundname".equals(key))
 					{
 						json.put(key, value);
 					}

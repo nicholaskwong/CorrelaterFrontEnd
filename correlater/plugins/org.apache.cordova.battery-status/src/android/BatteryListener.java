@@ -55,7 +55,7 @@ public class BatteryListener extends CordovaPlugin {
      * @return              	True if the action was valid, false if not.
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
-        if (action.equals("start")) {
+        if ("start".equals(action)) {
             if (this.batteryCallbackContext != null) {
                 callbackContext.error( "Battery listener already running.");
                 return true;
@@ -82,7 +82,7 @@ public class BatteryListener extends CordovaPlugin {
             return true;
         }
 
-        else if (action.equals("stop")) {
+        else if ("stop".equals(action)) {
             removeBatteryListener();
             this.sendUpdate(new JSONObject(), false); // release status callback in JS side
             this.batteryCallbackContext = null;

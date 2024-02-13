@@ -101,11 +101,11 @@ public class InAppBrowser extends CordovaPlugin {
      * @return              A PluginResult object with a status and message.
      */
     public boolean execute(String action, CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
-        if (action.equals("open")) {
+        if ("open".equals(action)) {
             this.callbackContext = callbackContext;
             final String url = args.getString(0);
             String t = args.optString(1);
-            if (t == null || t.equals("") || t.equals(NULL)) {
+            if (t == null || "".equals(t) || NULL.equals(t)) {
                 t = SELF;
             }
             final String target = t;
@@ -158,17 +158,17 @@ public class InAppBrowser extends CordovaPlugin {
                 }
             });
         }
-        else if (action.equals("close")) {
+        else if ("close".equals(action)) {
             closeDialog();
         }
-        else if (action.equals("injectScriptCode")) {
+        else if ("injectScriptCode".equals(action)) {
             String jsWrapper = null;
             if (args.getBoolean(1)) {
                 jsWrapper = String.format("prompt(JSON.stringify([eval(%%s)]), 'gap-iab://%s')", callbackContext.getCallbackId());
             }
             injectDeferredObject(args.getString(0), jsWrapper);
         }
-        else if (action.equals("injectScriptFile")) {
+        else if ("injectScriptFile".equals(action)) {
             String jsWrapper;
             if (args.getBoolean(1)) {
                 jsWrapper = String.format("(function(d) { var c = d.createElement('script'); c.src = %%s; c.onload = function() { prompt('', 'gap-iab://%s'); }; d.body.appendChild(c); })(document)", callbackContext.getCallbackId());
@@ -177,7 +177,7 @@ public class InAppBrowser extends CordovaPlugin {
             }
             injectDeferredObject(args.getString(0), jsWrapper);
         }
-        else if (action.equals("injectStyleCode")) {
+        else if ("injectStyleCode".equals(action)) {
             String jsWrapper;
             if (args.getBoolean(1)) {
                 jsWrapper = String.format("(function(d) { var c = d.createElement('style'); c.innerHTML = %%s; d.body.appendChild(c); prompt('', 'gap-iab://%s');})(document)", callbackContext.getCallbackId());
@@ -186,7 +186,7 @@ public class InAppBrowser extends CordovaPlugin {
             }
             injectDeferredObject(args.getString(0), jsWrapper);
         }
-        else if (action.equals("injectStyleFile")) {
+        else if ("injectStyleFile".equals(action)) {
             String jsWrapper;
             if (args.getBoolean(1)) {
                 jsWrapper = String.format("(function(d) { var c = d.createElement('link'); c.rel='stylesheet'; c.type='text/css'; c.href = %%s; d.head.appendChild(c); prompt('', 'gap-iab://%s');})(document)", callbackContext.getCallbackId());
@@ -195,7 +195,7 @@ public class InAppBrowser extends CordovaPlugin {
             }
             injectDeferredObject(args.getString(0), jsWrapper);
         }
-        else if (action.equals("show")) {
+        else if ("show".equals(action)) {
             this.cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -272,7 +272,7 @@ public class InAppBrowser extends CordovaPlugin {
      * @return
      */
     private HashMap<String, Boolean> parseFeature(String optString) {
-        if (optString.equals(NULL)) {
+        if (NULL.equals(optString)) {
             return null;
         } else {
             HashMap<String, Boolean> map = new HashMap<String, Boolean>();
@@ -282,10 +282,10 @@ public class InAppBrowser extends CordovaPlugin {
                 option = new StringTokenizer(features.nextToken(), "=");
                 if (option.hasMoreElements()) {
                     String key = option.nextToken();
-                    if (key.equalsIgnoreCase(CLOSE_BUTTON_CAPTION)) {
+                    if (CLOSE_BUTTON_CAPTION.equalsIgnoreCase(key)) {
                         this.buttonLabel = option.nextToken();
                     } else {
-                        Boolean value = option.nextToken().equals("no") ? Boolean.FALSE : Boolean.TRUE;
+                        Boolean value = "no".equals(option.nextToken()) ? Boolean.FALSE : Boolean.TRUE;
                         map.put(key, value);
                     }
                 }

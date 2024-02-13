@@ -70,34 +70,34 @@ public class Notification extends CordovaPlugin {
     	 */
     	if(this.cordova.getActivity().isFinishing()) return true;
     	
-        if (action.equals("beep")) {
+        if ("beep".equals(action)) {
             this.beep(args.getLong(0));
         }
-        else if (action.equals("alert")) {
+        else if ("alert".equals(action)) {
             this.alert(args.getString(0), args.getString(1), args.getString(2), callbackContext);
             return true;
         }
-        else if (action.equals("confirm")) {
+        else if ("confirm".equals(action)) {
             this.confirm(args.getString(0), args.getString(1), args.getJSONArray(2), callbackContext);
             return true;
         }
-        else if (action.equals("prompt")) {
+        else if ("prompt".equals(action)) {
             this.prompt(args.getString(0), args.getString(1), args.getJSONArray(2), args.getString(3), callbackContext);
             return true;
         }
-        else if (action.equals("activityStart")) {
+        else if ("activityStart".equals(action)) {
             this.activityStart(args.getString(0), args.getString(1));
         }
-        else if (action.equals("activityStop")) {
+        else if ("activityStop".equals(action)) {
             this.activityStop();
         }
-        else if (action.equals("progressStart")) {
+        else if ("progressStart".equals(action)) {
             this.progressStart(args.getString(0), args.getString(1));
         }
-        else if (action.equals("progressValue")) {
+        else if ("progressValue".equals(action)) {
             this.progressValue(args.getInt(0));
         }
-        else if (action.equals("progressStop")) {
+        else if ("progressStop".equals(action)) {
             this.progressStop();
         }
         else {

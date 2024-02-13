@@ -62,7 +62,7 @@ public class GeoBroker extends CordovaPlugin {
             }
 
 
-            if (action.equals("getLocation")) {
+            if ("getLocation".equals(action)) {
                 boolean enableHighAccuracy = args.getBoolean(0);
                 int maximumAge = args.getInt(1);
                 String provider = (enableHighAccuracy && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) ? LocationManager.GPS_PROVIDER : LocationManager.NETWORK_PROVIDER;
@@ -75,12 +75,12 @@ public class GeoBroker extends CordovaPlugin {
                     this.getCurrentLocation(callbackContext, enableHighAccuracy, args.optInt(2, 60000));
                 }
             }
-            else if (action.equals("addWatch")) {
+            else if ("addWatch".equals(action)) {
                 String id = args.getString(0);
                 boolean enableHighAccuracy = args.getBoolean(1);
                 this.addWatch(id, callbackContext, enableHighAccuracy);
             }
-            else if (action.equals("clearWatch")) {
+            else if ("clearWatch".equals(action)) {
                 String id = args.getString(0);
                 this.clearWatch(id);
             }

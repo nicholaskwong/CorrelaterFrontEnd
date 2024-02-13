@@ -110,7 +110,7 @@ public class PushPlugin extends CordovaPlugin {
      */
     private boolean isAmazonDevice() {
         String deviceMaker = android.os.Build.MANUFACTURER;
-        return deviceMaker.equalsIgnoreCase("Amazon");
+        return "Amazon".equalsIgnoreCase(deviceMaker);
     }
     
     /** 
@@ -378,14 +378,14 @@ public class PushPlugin extends CordovaPlugin {
                 Object value = extras.get(key);
 
                 // System data from Android
-                if (key.equals(FOREGROUND)) {
+                if (FOREGROUND.equals(key)) {
                     json.put(key, extras.getBoolean(FOREGROUND));
-                } else if (key.equals(COLDSTART)) {
+                } else if (COLDSTART.equals(key)) {
                     json.put(key, extras.getBoolean(COLDSTART));
                 } else {
                     // we encourage put the message content into message value
                     // when server send out notification
-                    if (key.equals(MESSAGE)) {
+                    if (MESSAGE.equals(key)) {
                         json.put(key, value);
                     }
 
