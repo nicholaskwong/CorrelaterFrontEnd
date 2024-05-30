@@ -85,7 +85,7 @@ public class ContactManager extends CordovaPlugin {
             this.contactAccessor = new ContactAccessorSdk5(this.cordova);
         }
 
-        if (action.equals("search")) {
+        if ("search".equals(action)) {
             final JSONArray filter = args.getJSONArray(0);
             final JSONObject options = args.get(1) == null ? null : args.getJSONObject(1);
             this.cordova.getThreadPool().execute(new Runnable() {
@@ -95,7 +95,7 @@ public class ContactManager extends CordovaPlugin {
                 }
             });
         }
-        else if (action.equals("save")) {
+        else if ("save".equals(action)) {
             final JSONObject contact = args.getJSONObject(0);
             this.cordova.getThreadPool().execute(new Runnable(){
                 public void run() {
@@ -116,7 +116,7 @@ public class ContactManager extends CordovaPlugin {
                 }
             });
         }
-        else if (action.equals("remove")) {
+        else if ("remove".equals(action)) {
             final String contactId = args.getString(0);
             this.cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
@@ -128,7 +128,7 @@ public class ContactManager extends CordovaPlugin {
                 }
             });
         }
-        else if (action.equals("pickContact")) {
+        else if ("pickContact".equals(action)) {
             pickContactAsync();
         }
         else {

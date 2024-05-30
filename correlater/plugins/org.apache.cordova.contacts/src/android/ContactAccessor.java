@@ -129,7 +129,7 @@ public abstract class ContactAccessor {
         try {
             if (obj != null) {
                 value = obj.getString(property);
-                if (value.equals("null")) {
+                if ("null".equals(value)) {
                     Log.d(LOG_TAG, property + " is string called 'null'");
                     value = null;
                 }

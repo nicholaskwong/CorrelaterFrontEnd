@@ -45,10 +45,10 @@ public class Vibration extends CordovaPlugin {
      * @return                  True when the action was valid, false otherwise.
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("vibrate")) {
+        if ("vibrate".equals(action)) {
             this.vibrate(args.getLong(0));
         }
-        else if (action.equals("vibrateWithPattern")) {
+        else if ("vibrateWithPattern".equals(action)) {
             JSONArray pattern = args.getJSONArray(0);
             int repeat = args.getInt(1);
             long[] patternArray = new long[pattern.length()];
@@ -57,7 +57,7 @@ public class Vibration extends CordovaPlugin {
             }
             this.vibrateWithPattern(patternArray, repeat);
         }
-        else if (action.equals("cancelVibration")) {
+        else if ("cancelVibration".equals(action)) {
             this.cancelVibration();
         }
         else {

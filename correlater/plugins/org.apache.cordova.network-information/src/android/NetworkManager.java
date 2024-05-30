@@ -125,7 +125,7 @@ public class NetworkManager extends CordovaPlugin {
      * @return                  True if the action was valid, false otherwise.
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
-        if (action.equals("getConnectionInfo")) {
+        if ("getConnectionInfo".equals(action)) {
             this.connectionCallbackContext = callbackContext;
             NetworkInfo info = sockMan.getActiveNetworkInfo();
             String connectionType = "";
