@@ -19,6 +19,8 @@
  
 package org.apache.cordova.contacts;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -1591,7 +1593,7 @@ public class ContactAccessorSdk5 extends ContactAccessor {
             return mApp.getActivity().getContentResolver().openInputStream(uri);
         }
         if (path.startsWith("http:") || path.startsWith("https:") || path.startsWith("file:")) {
-            URL url = new URL(path);
+            URL url = Urls.create(path, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             return url.openStream();
         }
         else {
